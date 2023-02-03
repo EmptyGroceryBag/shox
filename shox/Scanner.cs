@@ -1,6 +1,5 @@
 namespace shox {
-public class Scanner
-{
+public class Scanner {
   public string source { get; set; }
   public List<Token> tokens { get; set; }
   public int start { get; set; } // First char in lexeme
