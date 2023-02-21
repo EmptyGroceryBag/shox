@@ -21,44 +21,44 @@ public enum TokenType {
 }
 
 public class Token : IEquatable<Token> {
-  public TokenType Type { get; set; }
-  public string Lexeme { get; set; }
-  public object? Literal { get; set; }
-  public int Line { get; set; }
+  public TokenType type { get; set; }
+  public string lexeme { get; set; }
+  public object? literal { get; set; }
+  public int line { get; set; }
 
   public Token(
-    TokenType Type,
-    string Lexeme,
-    object? Literal,
-    int Line
+    TokenType type,
+    string lexeme,
+    object? literal,
+    int line
   ) 
   {
-    this.Type = Type;
-    this.Lexeme = Lexeme;
-    this.Literal = Literal;
-    this.Line = Line;
+    this.type = type;
+    this.lexeme = lexeme;
+    this.literal = literal;
+    this.line = line;
   }
 
   public bool Equals(Token? other) {
     if (other == null)
       return false;
     
-    if (other.Type != Type) return false;
-    if (other.Lexeme != Lexeme) return false;
-    if (other.Literal != null) {
-      if (!other.Literal.Equals(Literal)) 
+    if (other.type != type) return false;
+    if (other.lexeme != lexeme) return false;
+    if (other.literal != null) {
+      if (!other.literal.Equals(literal)) 
         return false;
     }
-    if (other.Line != Line) return other.Line != Line;
+    if (other.line != line) return other.line != line;
 
     return true;
   }
 
   public override string ToString() {
-    string strType    = $"  Type    = {Type}";
-    string strLexeme  = $"  Lexeme  = {Lexeme}";
-    string strLiteral = $"  Literal = {Literal}";
-    string strLine    = $"  Line    = {Line}";
+    string strType    = $"  Type    = {type}";
+    string strLexeme  = $"  Lexeme  = {lexeme}";
+    string strLiteral = $"  Literal = {literal}";
+    string strLine    = $"  Line    = {line}";
 
     return $"Token:\n{strType}\n{strLexeme}\n{strLiteral}\n{strLine}\n";
   }

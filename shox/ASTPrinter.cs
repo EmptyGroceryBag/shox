@@ -4,7 +4,7 @@ namespace shox;
 
 public class ASTPrinter : Expr.IVisitor<string> {
   public string VisitBinaryExpr(Expr.Binary expr) {
-    return parenthesize(expr.op.Lexeme, expr.left, expr.right);
+    return parenthesize(expr.op.lexeme, expr.left, expr.right);
   }
 
   public string VisitGroupingExpr(Expr.Grouping expr) {
@@ -19,7 +19,7 @@ public class ASTPrinter : Expr.IVisitor<string> {
   }
 
   public string VisitUnaryExpr(Expr.Unary expr) {
-    return parenthesize(expr.op.Lexeme, expr.right);
+    return parenthesize(expr.op.lexeme, expr.right);
   }
   
   public string parenthesize(string name, params Expr[] exprs) {

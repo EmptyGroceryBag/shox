@@ -13,14 +13,14 @@ public class TestScanner
     const int LENGTH = 3;
     Assert.Equal(LENGTH, tokens.Count); // Should be three tokens: {, }, EOF
 
-    Assert.Equal(TokenType.LEFT_BRACE, tokens[0].Type);
-    Assert.Equal("{", tokens[0].Lexeme);
+    Assert.Equal(TokenType.LEFT_BRACE, tokens[0].type);
+    Assert.Equal("{", tokens[0].lexeme);
 
-    Assert.Equal(TokenType.RIGHT_BRACE, tokens[1].Type);
-    Assert.Equal("}", tokens[1].Lexeme);
+    Assert.Equal(TokenType.RIGHT_BRACE, tokens[1].type);
+    Assert.Equal("}", tokens[1].lexeme);
 
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
 
   [Fact]
@@ -30,8 +30,8 @@ public class TestScanner
     List<Token> tokens = scanner.ScanTokens();
     Assert.Single(tokens);
 
-    Assert.Equal(TokenType.EOF, tokens[0].Type);
-    Assert.Equal(string.Empty, tokens[0].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[0].type);
+    Assert.Equal(string.Empty, tokens[0].lexeme);
   }
 
   [Fact]
@@ -42,11 +42,11 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
 
-    Assert.Equal(TokenType.RIGHT_BRACE, tokens[0].Type);
-    Assert.Equal("}", tokens[0].Lexeme);
+    Assert.Equal(TokenType.RIGHT_BRACE, tokens[0].type);
+    Assert.Equal("}", tokens[0].lexeme);
 
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
 
   [Fact]
@@ -57,11 +57,11 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
     
-    Assert.Equal(TokenType.RIGHT_BRACE,tokens[0].Type);
-    Assert.Equal("}", tokens[0].Lexeme);
+    Assert.Equal(TokenType.RIGHT_BRACE,tokens[0].type);
+    Assert.Equal("}", tokens[0].lexeme);
     
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
   
   [Fact]
@@ -72,11 +72,11 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
     
-    Assert.Equal(TokenType.STRING,tokens[0].Type);
-    Assert.Equal("string literal", tokens[0].Lexeme);
+    Assert.Equal(TokenType.STRING,tokens[0].type);
+    Assert.Equal("string literal", tokens[0].lexeme);
     
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
   
   [Fact]
@@ -86,8 +86,8 @@ public class TestScanner
     
     Assert.Single(tokens);
 
-    Assert.Equal(TokenType.EOF,tokens[0].Type);
-    Assert.Equal(string.Empty, tokens[0].Lexeme);
+    Assert.Equal(TokenType.EOF,tokens[0].type);
+    Assert.Equal(string.Empty, tokens[0].lexeme);
   }
   
   [Fact]
@@ -98,12 +98,12 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
     
-    Assert.Equal(TokenType.NUMBER,tokens[0].Type);
-    Assert.Equal("1234", tokens[0].Lexeme);
-    Assert.Equal(1234, tokens[0].Literal);
+    Assert.Equal(TokenType.NUMBER,tokens[0].type);
+    Assert.Equal("1234", tokens[0].lexeme);
+    Assert.Equal(1234, tokens[0].literal);
     
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
   
   [Fact]
@@ -114,12 +114,12 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
     
-    Assert.Equal(TokenType.NUMBER,tokens[0].Type);
-    Assert.Equal("12.34", tokens[0].Lexeme);
-    Assert.Equal(12.34, tokens[0].Literal);
+    Assert.Equal(TokenType.NUMBER,tokens[0].type);
+    Assert.Equal("12.34", tokens[0].lexeme);
+    Assert.Equal(12.34, tokens[0].literal);
     
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
   
   [Fact]
@@ -130,11 +130,11 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
     
-    Assert.Equal(TokenType.IDENTIFIER,tokens[0].Type);
-    Assert.Equal("ident", tokens[0].Lexeme);
+    Assert.Equal(TokenType.IDENTIFIER,tokens[0].type);
+    Assert.Equal("ident", tokens[0].lexeme);
 
-    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].Type);
-    Assert.Equal(string.Empty, tokens[LENGTH - 1].Lexeme);
+    Assert.Equal(TokenType.EOF, tokens[LENGTH - 1].type);
+    Assert.Equal(string.Empty, tokens[LENGTH - 1].lexeme);
   }
   
   [Fact]
@@ -145,11 +145,11 @@ public class TestScanner
     const int LENGTH = 2;
     Assert.Equal(LENGTH, tokens.Count);
     
-    Assert.Equal(TokenType.RETURN,tokens[0].Type);
-    Assert.Equal("return", tokens[0].Lexeme);
+    Assert.Equal(TokenType.RETURN,tokens[0].type);
+    Assert.Equal("return", tokens[0].lexeme);
 
-    Assert.Equal(TokenType.EOF,tokens[1].Type);
-    Assert.Equal(string.Empty, tokens[1].Lexeme);
+    Assert.Equal(TokenType.EOF,tokens[1].type);
+    Assert.Equal(string.Empty, tokens[1].lexeme);
   }
   
   [Fact]
