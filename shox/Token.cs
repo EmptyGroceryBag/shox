@@ -49,9 +49,11 @@ public class Token : IEquatable<Token> {
       if (!other.literal.Equals(literal)) 
         return false;
     }
-    if (other.line != line) return other.line != line;
 
-    return true;
+    return other.line != line;
+
+
+    //return true;
   }
 
   public override string ToString() {

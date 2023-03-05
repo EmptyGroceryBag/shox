@@ -5,11 +5,11 @@ public abstract class Expr {
   
   // AST Classes
   public class Binary : Expr {
-    public Expr left { get; set; }
+    public Expr? left { get; set; }
     public Token op { get; set; }
-    public Expr right { get; set; }
+    public Expr? right { get; set; }
 
-    public Binary(Expr left, Token op, Expr right) {
+    public Binary(Expr? left, Token op, Expr? right) {
       this.left = left;
       this.op = op;
       this.right = right;
@@ -21,9 +21,9 @@ public abstract class Expr {
   }
   
   public class Grouping : Expr {
-    public Expr expression { get; set; }
+    public Expr? expression { get; set; }
 
-    public Grouping(Expr expression) {
+    public Grouping(Expr? expression) {
       this.expression = expression;
     }
 
@@ -33,9 +33,9 @@ public abstract class Expr {
   }
   
   public class Literal : Expr {
-    public object value { get; set; }
+    public object? value { get; set; }
 
-    public Literal(object value) {
+    public Literal(object? value) {
       this.value = value;
     }
 
@@ -46,9 +46,9 @@ public abstract class Expr {
   
   public class Unary : Expr {
     public Token op { get; set; }
-    public Expr right { get; set; }
+    public Expr? right { get; set; }
 
-    public Unary(Token op, Expr right) {
+    public Unary(Token op, Expr? right) {
       this.op = op;
       this.right = right;
     }

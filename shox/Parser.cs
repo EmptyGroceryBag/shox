@@ -1,7 +1,4 @@
-﻿using System.Linq.Expressions;
-using Microsoft.VisualBasic.CompilerServices;
-
-namespace shox;
+﻿namespace shox;
 
 public class Parser {
   public List<Token> tokens { get; set; }
@@ -11,16 +8,16 @@ public class Parser {
     this.tokens = tokens;
   }
 
-  private Expr expression() {
+  private Expr? expression() {
     return equality();
   }
 
   private Expr? equality() {
-    Expr expr = comparison();
+    Expr? expr = comparison();
 
     while (match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
       Token op = previous();
-      Expr right = comparison();
+      Expr? right = comparison();
       expr = new Expr.Binary(expr, op, right);
     }
 
@@ -28,11 +25,11 @@ public class Parser {
   }
 
   private Expr? comparison() {
-    Expr expr = term();
+    Expr? expr = term();
 
     while (match(TokenType.GREATER, TokenType.GREATER_EQUAL, TokenType.LESS, TokenType.LESS_EQUAL)) {
       Token op = previous();
-      Expr right = term();
+      Expr? right = term();
       expr = new Expr.Binary(expr, op, right);
     }
     
@@ -40,11 +37,11 @@ public class Parser {
   }
 
   private Expr? term() {
-    Expr expr = factor();
+    Expr? expr = factor();
 
     while (match(TokenType.MINUS, TokenType.PLUS)) {
       Token op = previous();
-      Expr right = factor();
+      Expr? right = factor();
       expr = new Expr.Binary(expr, op, right);
     }
 
@@ -52,11 +49,11 @@ public class Parser {
   }
   
   private Expr? factor() {
-    Expr expr = unary();
+    Expr? expr = unary();
 
     while (match(TokenType.SLASH, TokenType.STAR)) {
       Token op = previous();
-      Expr right = unary();
+      Expr? right = unary();
       expr = new Expr.Binary(expr, op, right);
     }
 
@@ -66,7 +63,7 @@ public class Parser {
   private Expr? unary() {
     if (match(TokenType.BANG, TokenType.MINUS)) {
       Token op = previous();
-      Expr right = unary();
+      Expr? right = unary();
       return new Expr.Unary(op, right);
     }
 
@@ -83,10 +80,12 @@ public class Parser {
     }
 
     if (match(TokenType.LEFT_PAREN)) {
-      Expr expr = expression();
-      consume(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
+      Expr? expr = expression();
+      //consume(TokenType.RIGHT_PAREN, "Expect ')' after expression.");
       return new Expr.Grouping(expr);
     }
+
+    return null;
   }
   
   private bool match(params TokenType[] types) {
