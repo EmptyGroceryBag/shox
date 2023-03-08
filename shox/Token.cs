@@ -50,10 +50,11 @@ public class Token : IEquatable<Token> {
         return false;
     }
 
-    return other.line != line;
+    if (other.line != line)
+      return other.line != line;
 
 
-    //return true;
+    return true;
   }
 
   public override string ToString() {

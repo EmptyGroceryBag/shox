@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Xunit;
 using shox;
 
@@ -14,7 +15,15 @@ public class TestLogMessage
     Console.SetOut(stdout);
     
     Shox.LogMessage(Shox.SeverityLevel.INFO, testString);
-    Assert.Equal($"Info: {testString}\r\n", stdout.ToString());
+    if (
+      RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+      RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+    ) {
+      Assert.Equal($"Info: {testString}\n", stdout.ToString());
+    }
+    else {
+      Assert.Equal($"Info: {testString}\r\n", stdout.ToString());
+    }
 
     // Cleanup
     Console.SetOut(console);
@@ -28,7 +37,15 @@ public class TestLogMessage
     Console.SetOut(stdout);
     
     Shox.LogMessage(Shox.SeverityLevel.WARNING, testString);
-    Assert.Equal($"Warning: {testString}\r\n", stdout.ToString());
+    if (
+      RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+      RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+    ) {
+      Assert.Equal($"Warning: {testString}\n", stdout.ToString());
+    }
+    else {
+      Assert.Equal($"Warning: {testString}\r\n", stdout.ToString());
+    }
 
     // Cleanup
     Console.SetOut(console);
@@ -42,7 +59,15 @@ public class TestLogMessage
     Console.SetError(stdout);
     
     Shox.LogMessage(Shox.SeverityLevel.ERROR, testString);
-    Assert.Equal($"Error: {testString}\r\n", stdout.ToString());
+    if (
+      RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+      RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+    ) {
+      Assert.Equal($"Error: {testString}\n", stdout.ToString());
+    }
+    else {
+      Assert.Equal($"Error: {testString}\r\n", stdout.ToString());
+    }
 
     // Cleanup
     Console.SetError(console);

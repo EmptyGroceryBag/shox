@@ -169,7 +169,7 @@ public class TestScanner
     };
 
     for (int i = 0; i < LENGTH; i++) {
-      Assert.StrictEqual(expectedTokens[i], tokens[i]);  
+      Assert.StrictEqual(expectedTokens[i], tokens[i]);
     }
   }
 } // namespace test
